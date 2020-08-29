@@ -1,0 +1,30 @@
+<div class="container">
+   <h1>Register Form</h1>
+   <form #registerForm="ngForm" (ngSubmit) = "registerForm.form.valid && registerationFormSubmitHandeler();">
+       <div class="form-group">
+           <input type='text' placeholder="Enter Username" class="form control" 
+           name="txtUsername"[(ngModel)]="userDetails.userName">
+       </div>
+       <div class="form-group">
+        <input type='text' placeholder="Enter Email" class="form control" 
+        name="txtEmail"[(ngModel)]="userDetails.emaiId" required #txtEmail="ngModel">
+    </div>
+    <div class="form-group">
+        <input type='text' placeholder="Enter Password" class="form control" 
+        name="password"[(ngModel)]="userDetails.password" required #txtPassword="ngModel">
+    </div>    
+    
+    <div class="form-group">
+        <input type='text' placeholder="Enter Username" class="form control" 
+        name="txtAge"[(ngModel)]="userDetails.age" #txtAge="ngModel">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Register" >
+
+    </div>
+   </form>
+
+
+  Form Status :{{registerForm.status}}
+  Form Values :{{registerForm.value|json}}
+</div>

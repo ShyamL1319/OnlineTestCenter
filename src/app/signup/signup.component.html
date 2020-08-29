@@ -1,0 +1,144 @@
+<div class="container bg-warning">
+
+    <form class="col-md-8 offset-2"  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+
+            <!-- Form Name  -->
+            <legend>
+
+                    <h2 class="mt-4 text-center"><b>Registration Form</b></h2>
+
+            </legend><br>
+
+                  <!-- Text input-->
+
+                  <div class="form-group row">
+                    <label class="col-md-10 offset-1 control-label">Username</label>
+                    <div class="col-md-10 offset-1 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-circle icon"></i></span>
+                            <input name="name" formControlName='name' placeholder="Username" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div *ngIf="registerForm.get('name').errors?.required && !registerForm.get('name').pristine && (registerForm.get('name').touched)">
+                        <span class="text-danger text-center">*Username Required</span> 
+                       </div>
+                    <div *ngIf="registerForm.get('name').errors?.pattern && !registerForm.get('name').pristine">
+                        <span class="text-danger text-center justify-content-center">*Username should Contains only Letters and Digits</span> 
+                       </div>
+                </div>
+    
+            <!-- Text input-->
+
+            <div class="form-group row">
+                <label class="col-md-10 offset-1 control-label">Password</label>
+                <div class="col-md-10 offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock icon"> </i></span>
+                        <input name="password" formControlName='password' placeholder="Password" class="form-control" type="password">
+                    </div>
+                </div>
+                <div *ngIf="registerForm.get('name').errors?.required && !registerForm.get('password').pristine && (registerForm.get('password').touched)">
+                    <span class="text-danger text-center">*Password Required</span> 
+                   </div>
+                <div *ngIf="registerForm.get('password').errors?.pattern && !registerForm.get('password').pristine">
+                    <span class="text-danger text-center justify-content-center">*Password Should be strong </span> 
+                   </div>
+            </div>
+            <!-- Text input-->
+
+            <div class="form-group row">
+                <label class="col-md-10 offset-1 control-label">Confirm Password</label>
+                <div class="col-md-10 offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock icon"></i></span>
+                        <input name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" type="password">
+                    </div>
+                </div>
+                <div *ngIf="registerForm.get('confirmPassword').errors?.required && !registerForm.get('confirmPassword').pristine && (registerForm.get('confirmPassword').touched)">
+                    <span class="text-danger text-center">*Confirm Required </span> 
+                   </div>
+                <div *ngIf="registerForm.get('confirmPassword').errors?.pattern && !registerForm.get('confirmPassword').pristine">
+                    <span class="text-danger text-center justify-content-center">*Password Should be strong </span> 
+                   </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group row">
+                <label class="col-md-10 offset-1 control-label">E-Mail</label>
+                <div class="col-md-10 offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope icon"></i></span>
+                        <input name="email" formControlName="email" placeholder="E-Mail Address" class="form-control" type="text">
+                    </div>
+                </div>
+                <div *ngIf="registerForm.get('email').errors?.required && !registerForm.get('email').pristine && (registerForm.get('email').touched)">
+                    <span class="text-danger text-center">*Email</span> 
+                   </div>
+                <div *ngIf="registerForm.get('email').errors?.email && !registerForm.get('email').pristine">
+                    <span class="text-danger text-center justify-content-center">*Enter Correct Format of Email</span> 
+                   </div>
+            </div>
+
+
+
+            <!-- Text input-->
+
+            <div class="form-group row">
+                <label class="col-md-10 offset-1 control-label">Contact No.</label>
+                <div class="col-md-10 offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-address-book icon"></i></span>
+                        <input name="contactno" formControlName="contactno" placeholder="(+91)" class="form-control" type="text">
+                    </div>
+                </div>
+                <div *ngIf="registerForm.get('contactno').errors?.required && !registerForm.get('contactno').pristine && (registerForm.get('contactno').touched)">
+                    <span class="text-danger text-center">*Contact Number Required</span> 
+                   </div>
+                <div *ngIf="(registerForm.get('contactno').errors?.minlength ||registerForm.get('contactno').errors?.maxlength) && !registerForm.get('contactno').pristine">
+                    <span class="text-danger text-center justify-content-center">*Contact should be of 10 digit </span> 
+                   </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group row">
+                <label class="col-md-10 offset-1 control-label">Exeperience</label>
+                <div class="col-md-10 offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-briefcase icon"></i> </span>
+                        <input name="exp" placeholder="" formControlName="exp" class="form-control" type="number" min="0" max="6">
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group row ">
+                <label class="col-md-10 offset-1 control-label ">Resume</label>
+                <div class="col-md-10 offset-1 inputGroupContainer ">
+                    <div class="input-group ">
+                        <span class="input-group-addon "><i class="fa fa-file-image-o icon "></i> </span>
+                        <input name="file" formControlName="resume" placeholder="Upload Resume Here" class="form-control" type="file">
+                    </div>
+                </div>
+                <div *ngIf="registerForm.get('resume').errors?.required && !registerForm.get('resume').pristine && (registerForm.get('resume').touched)">
+                    <span class="text-danger text-center">*Resume Required</span> 
+                   </div>
+
+            </div>
+            <!-- Select Basic -->
+
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up "></i> Success!.</div>
+
+            <!-- Button -->
+            <div class="form-group row ">
+                <div class="col-md-6 offset-3 text-center ">
+                    <button type="submit" class="btn btn-success ">SignUp</button>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <div class="col-md-6 offset-3 text-center ">
+                    <a class="nav-link" routerLink="/login">I have an Account</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

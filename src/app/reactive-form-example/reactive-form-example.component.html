@@ -1,0 +1,62 @@
+<div class="container">
+            <div class="col-md-12">
+              <form [formGroup]="registerForm" (ngSubmit)="submitEventHandeler()">
+                <input type="text" id="userName" name="userName" formControlName="username"> 
+                <div *ngIf="registerForm.get('username').errors?.required && !registerForm.get('username').pristine">
+                  Username Required
+                </div>
+                <input type="text" id="Password" name="Password" formControlName="password"> 
+                <div *ngIf="registerForm.get('password').errors?.required && !registerForm.get('password').pristine">
+                  Password Required
+                </div> 
+                <div *ngIf="registerForm.get('password').errors?.minlength && !registerForm.get('password').pristine">
+                  Minimum Length should be greater than 8 character
+                </div> 
+                
+                <input type="text" id="email" name="email" formControlName="email"> 
+                <div *ngIf="registerForm.get('email').errors?.required && !registerForm.get('email').pristine">
+                  Password Required
+                </div> 
+
+                <div *ngIf="registerForm.get('email').errors?.email && !registerForm.get('email').pristine">
+                  Enter Correct Form of Email
+                </div> 
+
+                <input type="text" id="userId" name="userId" formControlName="userId"> 
+                <div *ngIf="registerForm.get('userId').errors?.required && !registerForm.get('userId').pristine">
+                  Userid Required
+                </div> 
+                <div *ngIf="registerForm.get('userId').errors?.pattern && !registerForm.get('userId').pristine">
+                  Userid should start with SL
+                </div> 
+
+                <input type="text" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"> 
+                <div *ngIf="registerForm.get('phoneNumber').errors?.required && !registerForm.get('phoneNumber').pristine">
+                  Phono. Required
+                </div> 
+
+                <div *ngIf="registerForm.get('phoneNumber').errors?.pattern  && registerForm.get('phoneNumber').errors?.maxlength && !registerForm.get('phoneNumber').pristine">
+                  Only digits upto 10 are allowed
+                </div> 
+
+
+                <input type="text" id="age" name="age" formControlName="age"> 
+                <div *ngIf="registerForm.get('age').errors?.required && !registerForm.get('age').pristine">
+                  Age Required
+                </div> 
+
+                <div *ngIf="registerForm.get('age').errors?.agevalidator && !registerForm.get('age').pristine">
+                  Age should be betwwn 18 to 80
+                </div> 
+
+
+
+                <input type="submit" value="Submit" [disabled]="!registerForm.valid">
+              </form>
+            {{registerForm.value|json}}
+          </div>
+          <!-- <input type="password" id="password" [value]="password" name="password" [formControl]="password">    
+          <input type="button" value="Submit" [disabled] ="!password.valid" (click)="submitEventHandeler()">
+          {{password.value}} -->
+
+</div>

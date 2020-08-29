@@ -1,0 +1,46 @@
+<div class="container" style="min-height: 750px;">
+  <nav class="navbar navbar-expand-lg bg-danger nav-pills sticky-top">
+      <a class="navbar-brand" href="#">Online Test Center</a>
+      <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation"></button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link"  routerLinkActive="active" routerLink="/" >Start </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link"  routerLinkActive="active" routerLink="/aboutus">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  routerLinkActive="active" routerLink="/login">LogIn</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  routerLinkActive="active" routerLink="/signup">SignUp</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  routerLinkActive="active" routerLink="/contactus">Contact Us</a>
+            </li>
+            
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+  </nav>
+
+
+
+
+<!-- <app-reactive-form-example></app-reactive-form-example> -->
+<router-outlet></router-outlet>
+
+</div>
+<footer class="footer">
+  <div class="container bg-secondary align-middle" style="border:2px solid red; min-width: 100px!important;">
+    <p class="text-center  text-light mt-2">&copy; Copyright @ 2020 Online Test Center</p>
+  </div>
+</footer>
