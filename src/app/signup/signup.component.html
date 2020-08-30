@@ -1,6 +1,6 @@
-<div class="container bg-warning">
+<div class="container">
 
-    <form class="col-md-8 offset-2"  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form class="col-md-8 offset-2 bg-primary" style="opacity: 0.7;" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <fieldset>
 
             <!-- Form Name  -->
@@ -20,10 +20,10 @@
                             <input name="name" formControlName='name' placeholder="Username" class="form-control" type="text">
                         </div>
                     </div>
-                    <div *ngIf="registerForm.get('name').errors?.required && !registerForm.get('name').pristine && (registerForm.get('name').touched)">
+                    <div *ngIf="registerForm.get('name').errors?.required && (!registerForm.get('name').pristine || registerForm.get('name').touched)">
                         <span class="text-danger text-center">*Username Required</span> 
                        </div>
-                    <div *ngIf="registerForm.get('name').errors?.pattern && !registerForm.get('name').pristine">
+                    <div *ngIf="registerForm.get('name').errors?.pattern && (!registerForm.get('name').pristine || registerForm.get('name').touched)">
                         <span class="text-danger text-center justify-content-center">*Username should Contains only Letters and Digits</span> 
                        </div>
                 </div>
@@ -38,11 +38,11 @@
                         <input name="password" formControlName='password' placeholder="Password" class="form-control" type="password">
                     </div>
                 </div>
-                <div *ngIf="registerForm.get('name').errors?.required && !registerForm.get('password').pristine && (registerForm.get('password').touched)">
+                <div *ngIf="registerForm.get('password').errors?.required && (!registerForm.get('password').pristine || registerForm.get('password').touched)">
                     <span class="text-danger text-center">*Password Required</span> 
                    </div>
-                <div *ngIf="registerForm.get('password').errors?.pattern && !registerForm.get('password').pristine">
-                    <span class="text-danger text-center justify-content-center">*Password Should be strong </span> 
+                <div *ngIf="!registerForm.get('password').errors?.pattern && (!registerForm.get('password').pristine || registerForm.get('password').touched)">
+                    <span class="text-danger text-center justify-content-center">*Password is not  strong use special chars</span> 
                    </div>
             </div>
             <!-- Text input-->
@@ -55,11 +55,14 @@
                         <input name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" type="password">
                     </div>
                 </div>
-                <div *ngIf="registerForm.get('confirmPassword').errors?.required && !registerForm.get('confirmPassword').pristine && (registerForm.get('confirmPassword').touched)">
-                    <span class="text-danger text-center">*Confirm Required </span> 
+                <div *ngIf="registerForm.get('confirmPassword').errors?.required && (!registerForm.get('confirmPassword').pristine || registerForm.get('confirmPassword').touched)">
+                    <span class="text-danger text-center">*Password Required</span> 
                    </div>
-                <div *ngIf="registerForm.get('confirmPassword').errors?.pattern && !registerForm.get('confirmPassword').pristine">
-                    <span class="text-danger text-center justify-content-center">*Password Should be strong </span> 
+                <div *ngIf="!registerForm.get('confirmPassword').errors?.pattern && (!registerForm.get('confirmPassword').pristine || registerForm.get('confirmPassword').touched)">
+                    <span class="text-danger text-center justify-content-center">*Password is not  strong use special chars</span> 
+                   </div>
+                <div *ngIf="registerForm.get('confirmPassword').errors?.passwordMismatch && (!registerForm.get('confirmPassword').pristine || registerForm.get('confirmPassword').touched)">
+                    <span class="text-danger text-center justify-content-center">*Password not matched </span> 
                    </div>
             </div>
             
@@ -72,10 +75,10 @@
                         <input name="email" formControlName="email" placeholder="E-Mail Address" class="form-control" type="text">
                     </div>
                 </div>
-                <div *ngIf="registerForm.get('email').errors?.required && !registerForm.get('email').pristine && (registerForm.get('email').touched)">
+                <div *ngIf="registerForm.get('email').errors?.required && (!registerForm.get('email').pristine ||registerForm.get('email').touched)">
                     <span class="text-danger text-center">*Email</span> 
                    </div>
-                <div *ngIf="registerForm.get('email').errors?.email && !registerForm.get('email').pristine">
+                <div *ngIf="registerForm.get('email').errors?.email && (!registerForm.get('email').pristine || registerForm.get('email').touched)">
                     <span class="text-danger text-center justify-content-center">*Enter Correct Format of Email</span> 
                    </div>
             </div>
@@ -92,12 +95,15 @@
                         <input name="contactno" formControlName="contactno" placeholder="(+91)" class="form-control" type="text">
                     </div>
                 </div>
-                <div *ngIf="registerForm.get('contactno').errors?.required && !registerForm.get('contactno').pristine && (registerForm.get('contactno').touched)">
+                <div *ngIf="registerForm.get('contactno').errors?.required && (!registerForm.get('contactno').pristine || (registerForm.get('contactno').touched))">
                     <span class="text-danger text-center">*Contact Number Required</span> 
                    </div>
-                <div *ngIf="(registerForm.get('contactno').errors?.minlength ||registerForm.get('contactno').errors?.maxlength) && !registerForm.get('contactno').pristine">
-                    <span class="text-danger text-center justify-content-center">*Contact should be of 10 digit </span> 
+                <div *ngIf="(registerForm.get('contactno').errors?.minlength ||registerForm.get('contactno').errors?.maxlength) || (!registerForm.get('contactno').pristine || (registerForm.get('contactno').touched))">
+                    <span class="text-danger text-center justify-content-center">*Only 10 digits are allowed </span> 
                    </div>
+                <div *ngIf="(registerForm.get('contactno').errors?.pattern) && (!registerForm.get('contactno').pristine || (registerForm.get('contactno').touched))">
+                    <span class="text-danger text-center justify-content-center">*Only digits </span> 
+                </div>
             </div>
             <!-- Text input-->
             <div class="form-group row">
@@ -108,6 +114,9 @@
                         <input name="exp" placeholder="" formControlName="exp" class="form-control" type="number" min="0" max="6">
                     </div>
                 </div>
+                <div *ngIf="registerForm.get('contactno').errors?.pattern && (!registerForm.get('contactno').pristine || (registerForm.get('contactno').touched))">
+                    <span class="text-danger text-center">*Only Positive Numbers allowed</span> 
+                   </div>
             </div>
             <!-- Text input-->
             <div class="form-group row ">
@@ -118,7 +127,7 @@
                         <input name="file" formControlName="resume" placeholder="Upload Resume Here" class="form-control" type="file">
                     </div>
                 </div>
-                <div *ngIf="registerForm.get('resume').errors?.required && !registerForm.get('resume').pristine && (registerForm.get('resume').touched)">
+                <div *ngIf="registerForm.get('resume').errors?.required && (!registerForm.get('resume').pristine || registerForm.get('resume').touched)">
                     <span class="text-danger text-center">*Resume Required</span> 
                    </div>
 

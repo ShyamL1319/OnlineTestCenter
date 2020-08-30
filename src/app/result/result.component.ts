@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ManageQuestionsService } from '../manage-questions.service';
 
 @Component({
   selector: 'app-result',
@@ -9,8 +10,11 @@ export class ResultComponent implements OnInit {
 
   result:number;
   usernam:string;
+  finalScore:number;
+  constructor(public manageQuestion:ManageQuestionsService) {
+    this.finalScore = manageQuestion.calculateScore();
 
-  constructor() { }
+   }
 
   ngOnInit(): void {
 
